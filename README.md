@@ -26,3 +26,4 @@ El ejercicio consiste en la realización de un videojuego interactivo con una c�
 * Cuando la bola impacta en cualquiera de los bordes verticales, se suman los puntos correspondientes a
 cada uno de los rivales y vuelve a comenzar el reto
 * Se mostrarán los puntos en la pantalla y ganará el jugador que antes consiga 10 puntos.
+
