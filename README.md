@@ -5,6 +5,22 @@ Pong_CV
 
 Este proyecto nace a partir de una práctica propuesta por bq para conocer las aptitudes del desarrollador, a grandes rasgos la práctica consta de un pong interactivo en el que las palas son las manos de los jugadores.
 
+En este readme quiero recoger un poco el proceso de realización de la práctica así como para seguirme a mí mismo el progreso que voy siguiendo, y puesto que me encuentro trabajando, para volver a conectar después del trabajo e intentar seguir con el desarrollo de la forma más óptima posible.
+
+##Desarrollo
+
+###Martes 25
+
+Poco me ha dado tiempo a hacer: leer el enunciado y preparar todo para ponerse a programar. Puesto que formateé el portatil hace poco y no había tenido que programar c++ desde entonces no tenía instalados ni un IDE. De momento voy a intentar tirar con sublime text y en mac OS x, ya que al formatear e instalar mavericks machaqué la partición linux y parece que ya no se puede poner dual boot nunca más. Para compilación en linux -> virtual box.
+
+En un principio intentaré, dibujar la esfera encima de la captura de la webcam + reconocer bordes de las manos para los rebotes. Las mejoras se irán añadiendo según vaya avanzando ya que el tiempo es el mayor problema.
+
+###Lunes 31 - Martes 1
+
+No he conseguido sacar tiempo para este proyecto desde el martes pasado, por lo que hoy es el primer día de código, y puede que el último. La causa de esto ha sido una serie de coincidencias que no me han dejado tiempo para nada. Esto pretendía ser un diario pero ahora va a ir actualizado con cada commit, un commit por hito.
+
+01:19 am Clase main que muestra el vídeo: check
+
 ##Enunciado
 
 Este es el ejercicio propuesto, para ser realizado preferiblemente en un entorno Linux (Ubuntu), aunque si tienes instalado otro sistema operativo no hay problema.
@@ -14,16 +30,18 @@ El ejercicio consiste en la realización de un videojuego interactivo con una c�
 1. (obligatorio) Captura y visualización del vídeo de una cámara.
 
 2. (deseable) Representar una esfera con las siguientes características:
-* Aparece en el centro de la pantalla y selecciona una dirección aleatoria
-* Se mueve con velocidad constante rebotando en los bordes de la pantalla
+
+	* Aparece en el centro de la pantalla y selecciona una dirección aleatoria
+	* Se mueve con velocidad constante rebotando en los bordes de la pantalla
 
 3. (deseable) Interacción con la bola:
-* Desviar la trayectoria de la bola al detectar movimiento o un determinado color o forma.
+
+	* Desviar la trayectoria de la bola al detectar movimiento o un determinado color o forma.
 
 4. (opcional) Desarrollar un juego para dos jugadores en el que:
-* Aparece una bola en el centro de la pantalla y selecciona una dirección aleatoria
-* Rebota en los bordes horizontales
-* Cuando la bola impacta en cualquiera de los bordes verticales, se suman los puntos correspondientes a
-cada uno de los rivales y vuelve a comenzar el reto
-* Se mostrarán los puntos en la pantalla y ganará el jugador que antes consiga 10 puntos.
+	* Aparece una bola en el centro de la pantalla y selecciona una dirección aleatoria
+	* Rebota en los bordes horizontales
+	* Cuando la bola impacta en cualquiera de los bordes verticales, se suman los puntos correspondientes a
+	cada uno de los rivales y vuelve a comenzar el reto
+	* Se mostrarán los puntos en la pantalla y ganará el jugador que antes consiga 10 puntos.
 
