@@ -22,6 +22,13 @@ No he conseguido sacar tiempo para este proyecto desde el martes pasado, por lo 
 ####01:19 am 
 Clase main que muestra el vídeo: check
 
+###Sábado 5
+
+Primer hito: mostrar y grabar vídeo conseguido. El mayor problema ha sido que intenté hacerlo funcionar con opencv 3.0: si tienes un mac / maquina virtual en un mac: no lo hagas
+
+####20:58 
+Clase main que muestra y graba el vídeo: check
+
 ##Enunciado
 
 Este es el ejercicio propuesto, para ser realizado preferiblemente en un entorno Linux (Ubuntu), aunque si tienes instalado otro sistema operativo no hay problema.
