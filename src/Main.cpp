@@ -1,5 +1,5 @@
-#include <highgui.hpp>
-#include <core.hpp>
+#include <highgui.h>
+
 #include <iostream>
 
 using namespace cv;
@@ -17,10 +17,10 @@ int main(int argc, char* argv[])
         return -1;
     }
 
-   double videoWidth = cap.get(CAP_PROP_FRAME_WIDTH); //get the width of frames of the video
-   double videoHeight = cap.get(CAP_PROP_FRAME_HEIGHT); //get the height of frames of the video
-   int fourcc=static_cast<int>(cap.get(CAP_PROP_FOURCC));
-   double fps=static_cast<double>(cap.get(CAP_PROP_FPS));
+   double videoWidth = cap.get(CV_CAP_PROP_FRAME_WIDTH); //get the width of frames of the video
+   double videoHeight = cap.get(CV_CAP_PROP_FRAME_HEIGHT); //get the height of frames of the video
+//   int fourcc=static_cast<int>(cap.get(CV_CAP_PROP_FOURCC));
+//   double fps=static_cast<double>(cap.get(CV_CAP_PROP_FPS)); //don't work anymore, I give up, I think is my macbook's problem, fuck apple
     cout << "Frame size : " << videoWidth << " x " << videoHeight << endl;
     cout << "Press esc to exit the program" << endl;
     namedWindow("Pong_cv",WINDOW_AUTOSIZE); //create a window called "Pong_cv"
@@ -29,10 +29,10 @@ int main(int argc, char* argv[])
 
 
 
-    VideoWriter oVideoWriter ("recording.mov", , 15, frameSize, true);
-    cout << "fps: "<< cap.get(CAP_PROP_FPS) << endl;
-    cout << "fourcc: "<< cap.get(CAP_PROP_FOURCC) << endl;
-    //For simplicity, use the same encoding as the one provided by the camera
+    VideoWriter oVideoWriter ("recording.avi", CV_FOURCC('P','I','M','1'), 20, frameSize, true);
+
+
+    //For simplicity, recording in mpeg-1
 
     while (1)
     {
