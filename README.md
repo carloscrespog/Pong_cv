@@ -19,7 +19,8 @@ En un principio intentaré, dibujar la esfera encima de la captura de la webcam 
 
 No he conseguido sacar tiempo para este proyecto desde el martes pasado, por lo que hoy es el primer día de código, y puede que el último. La causa de esto ha sido una serie de coincidencias que no me han dejado tiempo para nada. Esto pretendía ser un diario pero ahora va a ir actualizado con cada commit, un commit por hito.
 
-01:19 am Clase main que muestra el vídeo: check
+####01:19 am 
+Clase main que muestra el vídeo: check
 
 ##Enunciado
 
