@@ -3,13 +3,16 @@
 
 #include "Record.h"
 #include "Runtime_keys.h"
+#include "Ball.h"
+
+#define w 400
 
 using namespace cv;
 using namespace std;
 
 
 
-
+void MyFilledCircle( Mat img, Point center );
 
 int main(int argc, char* argv[])
 {
@@ -33,10 +36,9 @@ int main(int argc, char* argv[])
 	Size frameSize(static_cast<int>(videoWidth), static_cast<int>(videoHeight)); //set size for each frame
 
 
-
 	Record recorder ( 20, frameSize);
 	Runtime_keys runtime_keys;
-
+	Ball myBall(Point(videowidth/2,videoHeight),20,Scalar( 0, 0, 255 ),-1,8);
 
 	while (1)
 	{
@@ -45,6 +47,7 @@ int main(int argc, char* argv[])
 
 		bool frameSuccess = cap.read(frame); // read a new frame from video
 
+		myBall.paint(frame);
 		if (!frameSuccess) //if not success, break loop
 		{
 			cout << "Cannot read a frame from video stream" << endl;
@@ -54,7 +57,7 @@ int main(int argc, char* argv[])
 		if(runtime_keys.spacebar_pressed()){
 			recorder.write_frame(frame);
 		}
-
+		//atom_image.copyTo(frame(roi));
 		//oVideoWriter.write(frame);
 
 		imshow("Pong_cv", frame); //show the frame in the  window
@@ -71,4 +74,17 @@ int main(int argc, char* argv[])
 
 	return 0;
 
+}
+
+void MyFilledCircle( Mat img, Point center )
+{
+  int thickness = -1;
+  int lineType = 8;
+
+  circle( img,
+      center,
+      w/32,
+      Scalar( 0, 0, 255 ),
+      thickness,
+      lineType );
 }
