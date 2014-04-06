@@ -7,21 +7,32 @@
 
 #ifndef BALL_H_
 #define BALL_H_
+#define MAX_SPEED 10
 
 #include <highgui.h>
-using namespace cv;
+#include <iostream>
+#include <time.h>
+
 using namespace std;
+using namespace cv;
+
 class Ball {
 public:
 	Ball(Point center,int radius, Scalar color,int thickness,int shift);
 	virtual ~Ball();
 	void paint (Mat& frame);
+	void update_position();
+	int _x();
+	void _x(int x);
+	int _y();
+	void _y(int y);
 private:
 	Point _center;
 	int _radius;
 	Scalar _color;
 	int _thickness;
 	int _shift;
+	int _v [2];
 };
 
 #endif /* BALL_H_ */

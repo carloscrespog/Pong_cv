@@ -40,14 +40,17 @@ int main(int argc, char* argv[])
 	Runtime_keys runtime_keys;
 	Ball myBall(Point(videoWidth/2,videoHeight/2),videoWidth/30,Scalar( 192, 189, 91 ),-1,8);
 	Mat frame;
-			Mat fram2;
+	Mat fram2;
 	while (1)
 	{
 
 
 		bool frameSuccess = cap.read(frame); // read a new frame from video
-
+		myBall.update_position();
+		//cout<<myBall._x()<<endl;
 		myBall.paint(frame);
+
+
 		if (!frameSuccess) //if not success, break loop
 		{
 			cout << "Cannot read a frame from video stream" << endl;
@@ -78,13 +81,13 @@ int main(int argc, char* argv[])
 
 void MyFilledCircle( Mat img, Point center )
 {
-  int thickness = -1;
-  int lineType = 8;
+	int thickness = -1;
+	int lineType = 8;
 
-  circle( img,
-      center,
-      w/32,
-      Scalar( 0, 0, 255 ),
-      thickness,
-      lineType );
+	circle( img,
+			center,
+			w/32,
+			Scalar( 0, 0, 255 ),
+			thickness,
+			lineType );
 }
