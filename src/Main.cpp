@@ -39,11 +39,11 @@ int main(int argc, char* argv[])
 	Record recorder ( 20, frameSize);
 	Runtime_keys runtime_keys;
 	Ball myBall(Point(videoWidth/2,videoHeight/2),videoWidth/30,Scalar( 192, 189, 91 ),-1,8);
-
+	Mat frame;
+			Mat fram2;
 	while (1)
 	{
 
-		Mat frame;
 
 		bool frameSuccess = cap.read(frame); // read a new frame from video
 
@@ -58,8 +58,9 @@ int main(int argc, char* argv[])
 			recorder.write_frame(frame);
 		}
 
+		flip(frame, fram2,1);
 
-		imshow("Pong_cv", frame); //show the frame in the  window
+		imshow("Pong_cv", fram2); //show the frame in the  window
 		int kp=waitKey(10);
 
 		runtime_keys.key_pressed(kp);
