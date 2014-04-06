@@ -9,35 +9,41 @@
 
 void Runtime_keys::key_pressed(int key){
 	_key_pressed=key;
+
+}
+void Runtime_keys::esc_pressed(bool b){
+	_esc_pressed=b;
+}
+void Runtime_keys::spacebar_pressed(bool b){
+	 _spacebar_pressed=b;
 }
 
+void Runtime_keys::check_key(){
 
-void Runtime_keys::check_esc(){
-	while(1){
-		usleep(100000);
-		cout << "esc? "<< _key_pressed << endl;
-		if (_key_pressed == ESC_KEY) //If esc key is pressed, break loop
-		{
-			cout << "esc key is pressed, exiting" << endl;
-			_esc_pressed=true;
-			//key_pressed(0);
+
+	if (_key_pressed == ESC_KEY) //If esc key is pressed, break loop
+	{
+		cout << "esc key is pressed, exiting" << endl;
+		esc_pressed(true);
+
+	}
+	if (_key_pressed== SPACEBAR_KEY) //If space key is pressed, start recording. tap again to finish
+	{
+
+		if(_spacebar_pressed){
+			cout << "Stopped recording" << endl;
+			spacebar_pressed(false);
+		} else{
+			cout << "Started recording" << endl;
+			spacebar_pressed(true);
 		}
 
 	}
+
 }
 
-void Runtime_keys::check_spacebar(){
-	while(1){
-		usleep(100000);
-		if (_key_pressed== SPACEBAR_KEY) //If esc key is pressed, break loop
-		{
-			cout << "spacebar key is pressed, recording" << endl;
-			_spacebar_pressed=true;
-			//key_pressed(0);
-		}
 
-	}
-}
+
 
 bool Runtime_keys::esc_pressed(){
 	return _esc_pressed;
@@ -47,8 +53,8 @@ bool Runtime_keys::spacebar_pressed(){
 }
 Runtime_keys::Runtime_keys() {
 	_esc_pressed=false;
-	_spacebar_pressed=true;
-	_key_pressed=69;
+	_spacebar_pressed=false;
+	_key_pressed=-1;
 
 }
 Runtime_keys::~Runtime_keys() {

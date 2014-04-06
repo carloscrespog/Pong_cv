@@ -22,8 +22,9 @@ class Runtime_keys {
 public:
 	Runtime_keys();
 	virtual ~Runtime_keys();
-	void check_esc();
-	void check_spacebar();
+	void check_key();
+	void esc_pressed(bool b);
+	void spacebar_pressed(bool b);
 	bool esc_pressed();
 	bool spacebar_pressed();
 	void key_pressed(int key);

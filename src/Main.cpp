@@ -27,6 +27,7 @@ int main(int argc, char* argv[])
 	//   double fps=static_cast<double>(cap.get(CV_CAP_PROP_FPS)); //don't work anymore, I give up, I think is my macbook's problem, fuck apple
 	cout << "Frame size : " << videoWidth << " x " << videoHeight << endl;
 	cout << "Press esc to exit the program" << endl;
+	cout << "Press spacebar to start/stop recording" << endl;
 	namedWindow("Pong_cv",WINDOW_AUTOSIZE); //create a window called "Pong_cv"
 
 	Size frameSize(static_cast<int>(videoWidth), static_cast<int>(videoHeight)); //set size for each frame
@@ -36,11 +37,6 @@ int main(int argc, char* argv[])
 	Record recorder ( 20, frameSize);
 	Runtime_keys runtime_keys;
 
-	thread key_esc_checker(&Runtime_keys::check_esc,runtime_keys);
-
-	thread key_spacebar_checker(&Runtime_keys::check_spacebar,runtime_keys);
-
-	int key_pressed;
 
 	while (1)
 	{
@@ -62,16 +58,17 @@ int main(int argc, char* argv[])
 		//oVideoWriter.write(frame);
 
 		imshow("Pong_cv", frame); //show the frame in the  window
-		 key_pressed=waitKey(10);
-		cout<<key_pressed<<endl;
-		runtime_keys.key_pressed(key_pressed);
+		int kp=waitKey(10);
+
+		runtime_keys.key_pressed(kp);
+		runtime_keys.check_key();
+
 		if (runtime_keys.esc_pressed()) //If esc key is pressed, break loop
 		{
 			break;
 		}
 	}
-	key_esc_checker.join();
-	key_spacebar_checker.join();
+
 	return 0;
 
 }
