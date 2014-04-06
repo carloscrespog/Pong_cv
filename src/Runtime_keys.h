@@ -12,6 +12,8 @@
 
 #include <iostream>
 #include <thread>
+#include <chrono>
+#include <unistd.h>
 #include "Record.h"
 
 using namespace std;
@@ -24,9 +26,11 @@ public:
 	void check_spacebar();
 	bool esc_pressed();
 	bool spacebar_pressed();
+	void key_pressed(int key);
 private:
 	bool _esc_pressed;
 	bool _spacebar_pressed;
+	int _key_pressed;
 };
 
 #endif /* RUNTIME_KEYS_H_ */

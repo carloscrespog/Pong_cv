@@ -36,9 +36,11 @@ int main(int argc, char* argv[])
 	Record recorder ( 20, frameSize);
 	Runtime_keys runtime_keys;
 
-	//thread key_esc_checker(&Runtime_keys::check_esc,runtime_keys);
+	thread key_esc_checker(&Runtime_keys::check_esc,runtime_keys);
 
-	//thread key_spacebar_checker(&Runtime_keys::check_spacebar,runtime_keys);
+	thread key_spacebar_checker(&Runtime_keys::check_spacebar,runtime_keys);
+
+	int key_pressed;
 
 	while (1)
 	{
@@ -58,15 +60,18 @@ int main(int argc, char* argv[])
 		}
 
 		//oVideoWriter.write(frame);
+
 		imshow("Pong_cv", frame); //show the frame in the  window
-		waitKey(10);
+		 key_pressed=waitKey(10);
+		cout<<key_pressed<<endl;
+		runtime_keys.key_pressed(key_pressed);
 		if (runtime_keys.esc_pressed()) //If esc key is pressed, break loop
 		{
 			break;
 		}
 	}
-//	key_esc_checker.join();
-//	key_spacebar_checker.join();
+	key_esc_checker.join();
+	key_spacebar_checker.join();
 	return 0;
 
 }
