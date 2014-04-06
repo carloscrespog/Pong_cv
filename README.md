@@ -39,6 +39,10 @@ Pequeñas mejoras
 
 Dibujada bola en el centro
 
+####01:41 am
+
+Bola moviéndose con velocidad constante aleatoria
+
 ##Enunciado
 
 Este es el ejercicio propuesto, para ser realizado preferiblemente en un entorno Linux (Ubuntu), aunque si tienes instalado otro sistema operativo no hay problema.
