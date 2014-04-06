@@ -29,6 +29,10 @@ Primer hito: mostrar y grabar vídeo conseguido. El mayor problema ha sido que i
 ####20:58 
 Clase main que muestra y graba el vídeo: check
 
+####04:39 am
+
+Pequeñas mejoras
+
 ##Enunciado
 
 Este es el ejercicio propuesto, para ser realizado preferiblemente en un entorno Linux (Ubuntu), aunque si tienes instalado otro sistema operativo no hay problema.
