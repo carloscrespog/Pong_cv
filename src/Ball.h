@@ -10,16 +10,16 @@
 
 #include <highgui.h>
 using namespace cv;
-
+using namespace std;
 class Ball {
 public:
-	Ball(Point center,int radius, void* color,int thickness,int shift);
+	Ball(Point center,int radius, Scalar color,int thickness,int shift);
 	virtual ~Ball();
 	void paint (Mat& frame);
 private:
 	Point _center;
 	int _radius;
-	void* _color;
+	Scalar _color;
 	int _thickness;
 	int _shift;
 };

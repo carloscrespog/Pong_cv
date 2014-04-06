@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 
 	Record recorder ( 20, frameSize);
 	Runtime_keys runtime_keys;
-	Ball myBall(Point(videowidth/2,videoHeight),20,Scalar( 0, 0, 255 ),-1,8);
+	Ball myBall(Point(videoWidth/2,videoHeight/2),videoWidth/30,Scalar( 192, 189, 91 ),-1,8);
 
 	while (1)
 	{
@@ -57,8 +57,7 @@ int main(int argc, char* argv[])
 		if(runtime_keys.spacebar_pressed()){
 			recorder.write_frame(frame);
 		}
-		//atom_image.copyTo(frame(roi));
-		//oVideoWriter.write(frame);
+
 
 		imshow("Pong_cv", frame); //show the frame in the  window
 		int kp=waitKey(10);

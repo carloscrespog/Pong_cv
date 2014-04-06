@@ -33,6 +33,12 @@ Clase main que muestra y graba el vídeo: check
 
 Pequeñas mejoras
 
+###Domingo 6
+
+####00:24 am
+
+Dibujada bola en el centro
+
 ##Enunciado
 
 Este es el ejercicio propuesto, para ser realizado preferiblemente en un entorno Linux (Ubuntu), aunque si tienes instalado otro sistema operativo no hay problema.
