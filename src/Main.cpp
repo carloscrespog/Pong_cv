@@ -5,13 +5,15 @@
 #include "Runtime_keys.h"
 #include "Ball.h"
 
+
 using namespace cv;
 using namespace std;
 
-
-
+void set_text(Mat& frame, const std::string label,Point p,double scale, int thickness);
+void init_sequence(Mat& frame,int countFrame, int countdown);
 int main(int argc, char* argv[])
 {
+	static int countdown=150;
 	VideoCapture cap(0); // open default camera
 
 	if (!cap.isOpened())  // if not success, exit program
@@ -38,14 +40,25 @@ int main(int argc, char* argv[])
 	Mat frame;
 	Mat fram2;
 	bool running=true;
+	int countFrame=0;
+
 	while (running)
 	{
 
-
 		bool frameSuccess = cap.read(frame); // read a new frame from video
-		myBall.update_position();
-		//cout<<myBall._x()<<endl;
-		myBall.paint(frame);
+		countFrame++;
+		if(countFrame>=countdown)
+		{
+			myBall.update_position();
+
+			myBall.paint(frame);
+			flip(frame, fram2,1);
+		} else
+		{
+			flip(frame, fram2,1);
+			init_sequence(fram2,countFrame,countdown);
+
+		}
 
 
 		if (!frameSuccess) //if not success, break loop
@@ -59,7 +72,8 @@ int main(int argc, char* argv[])
 			recorder.write_frame(frame);
 		}
 
-		flip(frame, fram2,1);
+
+
 
 		imshow("Pong_cv", fram2); //show the frame in the  window
 		int kp=waitKey(10);
@@ -77,4 +91,19 @@ int main(int argc, char* argv[])
 
 }
 
+void set_text(Mat& frame,  const string label,Point p,double scale, int thickness){
+    int fontface = FONT_HERSHEY_SIMPLEX;
+    int baseline=0;
 
+    Size text = cv::getTextSize(label, fontface, scale, thickness, &baseline);
+
+    Point pt(p.x-(text.width/2),p.y+(text.height/2));
+
+    putText(frame, label, pt, fontface, scale, CV_RGB(255,255,255), thickness, 8);
+}
+
+void init_sequence(Mat& frame,int countFrame, int countdown){
+	int current_countdown=(countdown-countFrame)/(countdown/10);
+	set_text(frame,to_string(current_countdown),Point(frame.cols/2,frame.rows/2),20,20);
+
+}

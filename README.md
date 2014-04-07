@@ -47,6 +47,10 @@ Bola moviéndose con velocidad constante aleatoria
 
 Rebotes implementados: hito 2 conseguido
 
+####03:17 am
+
+Countdown al empezar implementado
+
 ##Acknowledgments
 
 Máquina utilizada: Macbook air 
