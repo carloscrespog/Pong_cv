@@ -82,8 +82,8 @@ int main(int argc, char* argv[])
 			myBall.update_position();
 			myBall.paint(frame);
 			flip(frame, fram2,1);
-			//check if rectangle is outside frame
-			if((myBall._x()-myBall.radius()>=0)&&(myBall._x()+myBall.radius()<=dst.cols)
+			//check if rectangle is outside frame & if ball is in racket's area
+			if(((myBall._x()<=dst.cols/6)||(myBall._x()>=dst.cols*5/6))&&(myBall._x()-myBall.radius()>=0)&&(myBall._x()+myBall.radius()<=dst.cols)
 					&&(myBall._y()-myBall.radius()>=0)&&(myBall._y()+myBall.radius()<=dst.rows))
 			{
 
@@ -114,6 +114,8 @@ int main(int argc, char* argv[])
 		cvtColor( src, src_gray, COLOR_BGR2GRAY );
 		CannyThreshold(0,0);
 
+		line(fram2,Point(fram2.cols/6,0),Point(fram2.cols/6,fram2.rows),Scalar( 192, 189, 91 ),3,8,0);
+		line(fram2,Point(fram2.cols*5/6,0),Point(fram2.cols*5/6,fram2.rows),Scalar( 192, 189, 91 ),3,8,0);
 
 
 		if(runtime_keys.u_pressed())

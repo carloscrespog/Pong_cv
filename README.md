@@ -63,6 +63,10 @@ Acabo de darme cuenta que voy a ir al curro sin dormir: Canny Edge Detector inte
 
 Creadas regiones de interés alrededor de la bola 
 
+####06:27 am
+
+Implementados rebotes con manos.
+
 ##Acknowledgments
 
 Máquina utilizada: Macbook air 

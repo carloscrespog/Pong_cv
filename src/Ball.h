@@ -8,7 +8,7 @@
 #ifndef BALL_H_
 #define BALL_H_
 #define MAX_SPEED 10
-#define MIN_SPEED 1
+#define MIN_SPEED 5
 
 #include <highgui.h>
 #include <iostream>
