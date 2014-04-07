@@ -20,8 +20,6 @@ int lowThreshold;
 int const max_lowThreshold = 100;
 int lratio = 3;
 int kernel_size = 3;
-const char* window_name = "Edge Map";
-
 
 static void CannyThreshold(int, void*)
 {
@@ -56,6 +54,7 @@ int main(int argc, char* argv[])
 	cout << "Frame size : " << videoWidth << " x " << videoHeight << endl;
 	cout << "Press esc to exit the program" << endl;
 	cout << "Press spacebar to start/stop recording" << endl;
+	cout << "Press u to uglify (see Canny edge detector)" << endl;
 	namedWindow("Pong_cv",WINDOW_AUTOSIZE); //create a window called "Pong_cv"
 
 	Size frameSize(static_cast<int>(videoWidth), static_cast<int>(videoHeight)); //set size for each frame
@@ -68,15 +67,14 @@ int main(int argc, char* argv[])
 	Mat fram2;
 	bool running=true;
 	int countFrame=0;
-	 createTrackbar( "Min Threshold:", "Pong_cv", &lowThreshold, max_lowThreshold, CannyThreshold );
-
+	createTrackbar( "Min Canny Threshold:", "Pong_cv", &lowThreshold, max_lowThreshold, CannyThreshold );
+	setTrackbarPos("Min Canny Threshold:","Pong_cv",20);
 	while (running)
 	{
 
 		bool frameSuccess = cap.read(frame); // read a new frame from video
-		src = frame;
-		cvtColor( src, src_gray, COLOR_BGR2GRAY );
-		CannyThreshold(0,0);
+
+
 		countFrame++;
 		if(countFrame>=countdown)
 		{
@@ -102,11 +100,19 @@ int main(int argc, char* argv[])
 		{
 			recorder.write_frame(frame);
 		}
+		src = fram2;
+		cvtColor( src, src_gray, COLOR_BGR2GRAY );
+		CannyThreshold(0,0);
+
+		if(runtime_keys.u_pressed())
+		{
+			imshow("Pong_cv", dst); //show the ugly frame in the  window
+		}else
+		{
+			imshow("Pong_cv", fram2); //show the frame in the  window
+		}
 
 
-
-
-		imshow("Pong_cv", dst); //show the frame in the  window
 		int kp=waitKey(10);
 
 		runtime_keys.key_pressed(kp);

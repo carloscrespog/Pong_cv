@@ -55,6 +55,10 @@ Countdown al empezar implementado
 
 Canny Edge Detector implementado
 
+####04:45 am
+
+Acabo de darme cuenta que voy a ir al curro sin dormir: Canny Edge Detector integrado yey!
+
 ##Acknowledgments
 
 Máquina utilizada: Macbook air 
