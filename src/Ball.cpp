@@ -30,7 +30,14 @@ void Ball::paint (Mat& frame){
 
 }
 
+void Ball::check_roi (Mat& roi_frame){
+	cout << "M = "<< endl << " "  << roi_frame << endl << endl;
 
+}
+
+int Ball::radius(){
+	return _radius;
+}
 
 int Ball::_x(){
 	return _center.x;

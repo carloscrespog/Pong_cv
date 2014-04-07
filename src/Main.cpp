@@ -23,22 +23,23 @@ int kernel_size = 3;
 
 static void CannyThreshold(int, void*)
 {
-    /// Reduce noise with a kernel 3x3
-    blur( src_gray, detected_edges, Size(3,3) );
+	/// Reduce noise with a kernel 3x3
+	blur( src_gray, detected_edges, Size(3,3) );
 
-    /// Canny detector
-    Canny( detected_edges, detected_edges, lowThreshold, lowThreshold*lratio, kernel_size );
+	/// Canny detector
+	Canny( detected_edges, detected_edges, lowThreshold, lowThreshold*lratio, kernel_size );
 
-    /// Using Canny's output as a mask, we display our result
-    dst = Scalar::all(0);
+	/// Using Canny's output as a mask, we display our result
+	dst = Scalar::all(0);
 
-    src.copyTo( dst, detected_edges);
-    //imshow( window_name, dst );
+	src.copyTo( dst, detected_edges);
+	//imshow( window_name, dst );
 }
 
 int main(int argc, char* argv[])
 {
-	static int countdown=150;
+	//static int countdown=150;
+	static int countdown=1;
 	VideoCapture cap(0); // open default camera
 
 	if (!cap.isOpened())  // if not success, exit program
@@ -79,9 +80,18 @@ int main(int argc, char* argv[])
 		if(countFrame>=countdown)
 		{
 			myBall.update_position();
-
 			myBall.paint(frame);
 			flip(frame, fram2,1);
+			//check if rectangle is outside frame
+			if((myBall._x()-myBall.radius()>=0)&&(myBall._x()+myBall.radius()<=dst.cols)
+					&&(myBall._y()-myBall.radius()>=0)&&(myBall._y()+myBall.radius()<=dst.rows))
+			{
+
+				Rect region_of_interest=Rect(myBall._x(),myBall._y(),myBall.radius(),myBall.radius());
+				Mat image_roi=dst(region_of_interest);
+				myBall.check_roi(image_roi);
+			}
+
 		} else
 		{
 			flip(frame, fram2,1);
@@ -104,6 +114,8 @@ int main(int argc, char* argv[])
 		cvtColor( src, src_gray, COLOR_BGR2GRAY );
 		CannyThreshold(0,0);
 
+
+
 		if(runtime_keys.u_pressed())
 		{
 			imshow("Pong_cv", dst); //show the ugly frame in the  window
@@ -120,6 +132,7 @@ int main(int argc, char* argv[])
 
 		if (runtime_keys.esc_pressed()) //If esc key is pressed, break loop
 		{
+			//cout << "M = "<< endl << " "  << dst << endl << endl;
 			running=false;;
 		}
 	}
@@ -129,14 +142,14 @@ int main(int argc, char* argv[])
 }
 
 void set_text(Mat& frame,  const string label,Point p,double scale, int thickness){
-    int fontface = FONT_HERSHEY_SIMPLEX;
-    int baseline=0;
+	int fontface = FONT_HERSHEY_SIMPLEX;
+	int baseline=0;
 
-    Size text = cv::getTextSize(label, fontface, scale, thickness, &baseline);
+	Size text = cv::getTextSize(label, fontface, scale, thickness, &baseline);
 
-    Point pt(p.x-(text.width/2),p.y+(text.height/2));
+	Point pt(p.x-(text.width/2),p.y+(text.height/2));
 
-    putText(frame, label, pt, fontface, scale, CV_RGB(255,255,255), thickness, 8);
+	putText(frame, label, pt, fontface, scale, CV_RGB(255,255,255), thickness, 8);
 }
 
 void init_sequence(Mat& frame,int countFrame, int countdown){

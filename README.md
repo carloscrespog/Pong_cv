@@ -59,6 +59,10 @@ Canny Edge Detector implementado
 
 Acabo de darme cuenta que voy a ir al curro sin dormir: Canny Edge Detector integrado yey!
 
+####05:31am
+
+Creadas regiones de interés alrededor de la bola 
+
 ##Acknowledgments
 
 Máquina utilizada: Macbook air 
