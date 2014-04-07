@@ -39,7 +39,7 @@ static void CannyThreshold(int, void*)
 int main(int argc, char* argv[])
 {
 	//static int countdown=150;
-	static int countdown=1;
+	static int countdown=150;
 	VideoCapture cap(0); // open default camera
 
 	if (!cap.isOpened())  // if not success, exit program
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 	bool running=true;
 	int countFrame=0;
 	createTrackbar( "Min Canny Threshold:", "Pong_cv", &lowThreshold, max_lowThreshold, CannyThreshold );
-	setTrackbarPos("Min Canny Threshold:","Pong_cv",20);
+	setTrackbarPos("Min Canny Threshold:","Pong_cv",10);
 	while (running)
 	{
 
@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
 
 				Rect region_of_interest=Rect(myBall._x(),myBall._y(),myBall.radius(),myBall.radius());
 				Mat image_roi=dst(region_of_interest);
-				myBall.check_roi(image_roi);
+				myBall.check_roi(image_roi,(myBall._x()<=dst.cols/6));
 			}
 
 		} else

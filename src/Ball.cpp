@@ -30,8 +30,8 @@ void Ball::paint (Mat& frame){
 
 }
 
-void Ball::check_roi (Mat& roi_frame){
-	cout<<"Checking racket "<<endl;
+void Ball::check_roi (Mat& roi_frame,bool side){
+	cout<<"Checking racket "<<side<<"    " <<_v[0]<<endl;
 	int rows = roi_frame.rows;
 	int cols = roi_frame.cols;
 
@@ -39,9 +39,17 @@ void Ball::check_roi (Mat& roi_frame){
 	for( size_t i = 0; i < rows; i++ ) {
 		for( size_t j = 0; j < cols; j++ ) {
 			// Detect interaction between ball and edge and change speed
+			//printf("%d" ,roi_frame.at<uchar>(i,j));
 			if(roi_frame.at<uchar>(i,j)!=0){
 				cout<<"Bouncing on racket "<<endl;
-				_v[0]=-_v[0];
+				if(side&&_v[0]<0)
+				{
+					_v[0]=-_v[0];
+				}else if (!side&&_v[0]>0)
+				{
+					_v[0]=-_v[0];
+				}
+
 				break;
 				if(j!=cols){
 					break;

@@ -22,7 +22,7 @@ public:
 	Ball(Point center,int radius, Scalar color,int thickness,int shift,Size frame_size);
 	virtual ~Ball();
 	void paint (Mat& frame);
-	void check_roi (Mat& roi_frame);
+	void check_roi (Mat& roi_frame,bool side);
 	void update_position();
 	int _x();
 	void _x(int x);

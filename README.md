@@ -67,6 +67,10 @@ Creadas regiones de interés alrededor de la bola
 
 Implementados rebotes con manos.
 
+####06:41 am
+
+Rebotes con manos funcionando adecuadamente: hito 3 conseguido
+
 ##Acknowledgments
 
 Máquina utilizada: Macbook air 
