@@ -9,16 +9,17 @@
 
 
 
-Ball::Ball(Point center,int radius, Scalar color,int thickness,int shift) {
+Ball::Ball(Point center,int radius, Scalar color,int thickness,int shift,Size frame_size) {
 	_center=center;
 	_radius=radius;
 	_color=color;
 	_thickness=thickness;
 	_shift=shift;
+	_frame_size=frame_size;
 
 	srand(time(0));
-	_v[0]=rand()%MAX_SPEED;
-	_v[1]=rand()%MAX_SPEED;
+	_v[0]=rand()%(MAX_SPEED-MIN_SPEED)+MIN_SPEED;
+	_v[1]=rand()%(MAX_SPEED-MIN_SPEED)+MIN_SPEED;
 
 	cout<<"Initial speed: Vx="<< _v[0]<<" Vy="<<_v[1]<<endl;
 
@@ -47,7 +48,14 @@ void Ball::_y(int y){
 	_center.y=y;
 }
 void Ball::update_position(){
-
+	if((_x()-_radius<=0)||(_x()+_radius>=_frame_size.width)){
+		_v[0]=-_v[0];
+		cout<<"bum"<<endl;
+	}
+	if((_y()-_radius<=0)||(_y()+_radius>=_frame_size.height)){
+		_v[1]=-_v[1];
+		cout<<"bum"<<endl;
+	}
 	_x(_x()+_v[0]);
 
 	_y(_y()+_v[1]);

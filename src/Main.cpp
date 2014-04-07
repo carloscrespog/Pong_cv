@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 
 	Record recorder ( 20, frameSize);
 	Runtime_keys runtime_keys;
-	Ball myBall(Point(videoWidth/2,videoHeight/2),videoWidth/30,Scalar( 192, 189, 91 ),-1,8);
+	Ball myBall(Point(videoWidth/2,videoHeight/2),videoWidth/30,Scalar( 192, 189, 91 ),-1,8,frameSize);
 	Mat frame;
 	Mat fram2;
 	while (1)
