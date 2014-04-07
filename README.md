@@ -47,6 +47,21 @@ Bola moviéndose con velocidad constante aleatoria
 
 Rebotes implementados: hito 2 conseguido
 
+##Acknowledgments
+
+Máquina utilizada: Macbook air 
+
+Sistema operativo: linux en máquina virtual (fue imposible hacerlo funcionar en mac os x, problemas de drivers y encodings)
+
+IDEs: eclipse cdt y vim
+
+Guía de estilo seguida en cierta medida: [guía de estilo de google](http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml)
+
+Mejoras off topic:
+- Capacidad de grabar vídeo, parar de grabar vídeo y volver a grabar. El espacio cambia entre modo grabación y modo no grabación, por lo que el vídeo generado puede no ser tan largo como el tiempo que se ha estado jugando.
+- Cuenta atrás antes de empezar
+
+
 ##Enunciado
 
 Este es el ejercicio propuesto, para ser realizado preferiblemente en un entorno Linux (Ubuntu), aunque si tienes instalado otro sistema operativo no hay problema.

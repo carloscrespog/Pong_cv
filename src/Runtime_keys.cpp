@@ -30,10 +30,12 @@ void Runtime_keys::check_key(){
 	if (_key_pressed== SPACEBAR_KEY) //If space key is pressed, start recording. tap again to finish
 	{
 
-		if(_spacebar_pressed){
+		if(_spacebar_pressed)
+		{
 			cout << "Stopped recording" << endl;
 			spacebar_pressed(false);
-		} else{
+		} else
+		{
 			cout << "Started recording" << endl;
 			spacebar_pressed(true);
 		}
@@ -58,5 +60,5 @@ Runtime_keys::Runtime_keys() {
 
 }
 Runtime_keys::~Runtime_keys() {
-	// TODO Auto-generated destructor stub
+
 }

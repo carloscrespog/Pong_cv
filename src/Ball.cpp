@@ -27,7 +27,7 @@ Ball::Ball(Point center,int radius, Scalar color,int thickness,int shift,Size fr
 
 void Ball::paint (Mat& frame){
 	circle(frame,_center,_radius,_color,_thickness,_shift);
-	//cout<< _color*<<endl;
+
 }
 
 
@@ -48,18 +48,20 @@ void Ball::_y(int y){
 	_center.y=y;
 }
 void Ball::update_position(){
-	if((_x()-_radius<=0)||(_x()+_radius>=_frame_size.width)){
+	if((_x()-_radius<=0)||(_x()+_radius>=_frame_size.width)) //if bounce with x, invert speed
+	{
 		_v[0]=-_v[0];
-		cout<<"bum"<<endl;
+
 	}
-	if((_y()-_radius<=0)||(_y()+_radius>=_frame_size.height)){
+	if((_y()-_radius<=0)||(_y()+_radius>=_frame_size.height))//if bounce with y, invert speed
+	{
 		_v[1]=-_v[1];
-		cout<<"bum"<<endl;
+
 	}
 	_x(_x()+_v[0]);
 
 	_y(_y()+_v[1]);
 }
 Ball::~Ball() {
-	// TODO Auto-generated destructor stub
+
 }

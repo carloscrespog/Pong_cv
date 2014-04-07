@@ -5,14 +5,10 @@
 #include "Runtime_keys.h"
 #include "Ball.h"
 
-#define w 400
-
 using namespace cv;
 using namespace std;
 
 
-
-void MyFilledCircle( Mat img, Point center );
 
 int main(int argc, char* argv[])
 {
@@ -41,7 +37,8 @@ int main(int argc, char* argv[])
 	Ball myBall(Point(videoWidth/2,videoHeight/2),videoWidth/30,Scalar( 192, 189, 91 ),-1,8,frameSize);
 	Mat frame;
 	Mat fram2;
-	while (1)
+	bool running=true;
+	while (running)
 	{
 
 
@@ -57,7 +54,8 @@ int main(int argc, char* argv[])
 			break;
 		}
 
-		if(runtime_keys.spacebar_pressed()){
+		if(runtime_keys.spacebar_pressed())
+		{
 			recorder.write_frame(frame);
 		}
 
@@ -71,7 +69,7 @@ int main(int argc, char* argv[])
 
 		if (runtime_keys.esc_pressed()) //If esc key is pressed, break loop
 		{
-			break;
+			running=false;;
 		}
 	}
 
@@ -79,15 +77,4 @@ int main(int argc, char* argv[])
 
 }
 
-void MyFilledCircle( Mat img, Point center )
-{
-	int thickness = -1;
-	int lineType = 8;
 
-	circle( img,
-			center,
-			w/32,
-			Scalar( 0, 0, 255 ),
-			thickness,
-			lineType );
-}
