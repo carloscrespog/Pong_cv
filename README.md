@@ -51,6 +51,10 @@ Rebotes implementados: hito 2 conseguido
 
 Countdown al empezar implementado
 
+####04:19 am
+
+Canny Edge Detector implementado
+
 ##Acknowledgments
 
 Máquina utilizada: Macbook air 
