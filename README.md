@@ -43,6 +43,10 @@ Dibujada bola en el centro
 
 Bola moviéndose con velocidad constante aleatoria
 
+####02:09 am
+
+Rebotes implementados: hito 2 conseguido
+
 ##Enunciado
 
 Este es el ejercicio propuesto, para ser realizado preferiblemente en un entorno Linux (Ubuntu), aunque si tienes instalado otro sistema operativo no hay problema.
