@@ -7,6 +7,22 @@ Este proyecto nace a partir de una práctica propuesta por bq para conocer las a
 
 En este readme quiero recoger un poco el proceso de realización de la práctica así como para seguirme a mí mismo el progreso que voy siguiendo, y puesto que me encuentro trabajando, para volver a conectar después del trabajo e intentar seguir con el desarrollo de la forma más óptima posible.
 
+##Instalación y ejecución
+
++ Clonar repo
+
++ Ejecutar make dentro de la carpeta Debug, esto generará el binario (ejecutable) en la carpeta en la que estamos.
+
++ Ejecutar mediante ./Pong_cv
+
++ Para salir del programa pulsar esc
+
++ Para empezar a grabar pulsar espacio, para pausar grabación volver a pulsar espacio, para continuar grabación pulsar espacio otra vez
+
++ Para cambiar a modo "ugly" en el que se puede ver la detección de bordes pulsar u, volver a pulsar para salir de este modo
+
++ La barra ajusta el umbral de detección de bordes, en función de tu escena se necesitará más o menos. A más umbral, menos bordes se detectan.
+
 ##Desarrollo
 
 ###Martes 25

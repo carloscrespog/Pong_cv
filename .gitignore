@@ -1,4 +1,4 @@
 *.avi
 *.DS_Store
-Debug/*
-!Debug/*.mk
+Debug/src/*
+!Debug/src/*.mk
