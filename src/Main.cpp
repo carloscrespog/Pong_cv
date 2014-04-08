@@ -38,8 +38,9 @@ static void CannyThreshold(int, void*)
 
 int main(int argc, char* argv[])
 {
+
 	//static int countdown=150;
-	static int countdown=150;
+	static int countdown=10;	//initial countdown in frames
 	VideoCapture cap(0); // open default camera
 
 	if (!cap.isOpened())  // if not success, exit program
@@ -63,48 +64,54 @@ int main(int argc, char* argv[])
 
 	Record recorder ( 20, frameSize);
 	Runtime_keys runtime_keys;
+
 	Ball myBall(Point(videoWidth/2,videoHeight/2),videoWidth/30,Scalar( 192, 189, 91 ),-1,8,frameSize);
+
 	Mat frame;
 	Mat fram2;
 	bool running=true;
 	int countFrame=0;
 	createTrackbar( "Min Canny Threshold:", "Pong_cv", &lowThreshold, max_lowThreshold, CannyThreshold );
 	setTrackbarPos("Min Canny Threshold:","Pong_cv",10);
+
 	while (running)
 	{
-
 		bool frameSuccess = cap.read(frame); // read a new frame from video
-
-
-		countFrame++;
-		if(countFrame>=countdown)
-		{
-			myBall.update_position();
-			myBall.paint(frame);
-			flip(frame, fram2,1);
-			//check if rectangle is outside frame & if ball is in racket's area
-			if(((myBall._x()<=dst.cols/6)||(myBall._x()>=dst.cols*5/6))&&(myBall._x()-myBall.radius()>=0)&&(myBall._x()+myBall.radius()<=dst.cols)
-					&&(myBall._y()-myBall.radius()>=0)&&(myBall._y()+myBall.radius()<=dst.rows))
-			{
-
-				Rect region_of_interest=Rect(myBall._x(),myBall._y(),myBall.radius(),myBall.radius());
-				Mat image_roi=dst(region_of_interest);
-				myBall.check_roi(image_roi,(myBall._x()<=dst.cols/6));
-			}
-
-		} else
-		{
-			flip(frame, fram2,1);
-			init_sequence(fram2,countFrame,countdown);
-
-		}
-
 
 		if (!frameSuccess) //if not success, break loop
 		{
 			cout << "Cannot read a frame from video stream" << endl;
 			break;
 		}
+		if(myBall.scored()){
+			stringstream strm;
+			strm<<myBall.points()[0]<<"-"<<myBall.points()[1];
+			flip(frame, fram2,1);
+			set_text(fram2,strm.str(),Point(frame.cols/2,frame.rows/2),6,10);
+
+		}else if(countFrame>=countdown)
+		{
+			myBall.update_position();
+			myBall.paint(frame);
+			flip(frame, fram2,1);
+			//check if rectangle is outside frame & if ball is in racket's area
+			if(((myBall.x()<=dst.cols/6)||(myBall.x()>=dst.cols*5/6))&&(myBall.x()-myBall.radius()>=0)&&(myBall.x()+myBall.radius()<=dst.cols)
+					&&(myBall.y()-myBall.radius()>=0)&&(myBall.y()+myBall.radius()<=dst.rows))
+			{
+
+				Rect region_of_interest=Rect(myBall.x(),myBall.y(),myBall.radius(),myBall.radius());
+				Mat image_roi=dst(region_of_interest);
+				myBall.check_roi(image_roi,(myBall.x()<=dst.cols/6));
+			}
+
+		} else
+		{
+			countFrame++;
+			flip(frame, fram2,1);
+			init_sequence(fram2,countFrame,countdown);
+
+		}
+
 
 		if(runtime_keys.spacebar_pressed())
 		{
@@ -114,7 +121,7 @@ int main(int argc, char* argv[])
 		cvtColor( src, src_gray, COLOR_BGR2GRAY );
 		CannyThreshold(0,0);
 
-		line(fram2,Point(fram2.cols/6,0),Point(fram2.cols/6,fram2.rows),Scalar( 192, 189, 91 ),3,8,0);
+		line(fram2,Point(fram2.cols/6,0),Point(fram2.cols/6,fram2.rows),Scalar( 192, 189, 91 ),3,8,0);	// draw two lines that delimit the racket areas
 		line(fram2,Point(fram2.cols*5/6,0),Point(fram2.cols*5/6,fram2.rows),Scalar( 192, 189, 91 ),3,8,0);
 
 

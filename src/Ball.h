@@ -24,11 +24,13 @@ public:
 	void paint (Mat& frame);
 	void check_roi (Mat& roi_frame,bool side);
 	void update_position();
-	int _x();
-	void _x(int x);
-	int _y();
-	void _y(int y);
+	int x();
+	void x(int x);
+	int y();
+	void y(int y);
 	int radius();
+	bool scored();
+	vector<int> points();
 private:
 	Point _center;
 	int _radius;
@@ -37,6 +39,8 @@ private:
 	int _shift;
 	Size _frame_size;
 	int _v [2];
+	vector<int> _points;
+	bool _scored;
 };
 
 #endif /* BALL_H_ */
