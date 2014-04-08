@@ -31,7 +31,7 @@ void Ball::paint (Mat& frame){
 }
 
 void Ball::check_roi (Mat& roi_frame,bool side){
-	cout<<"Checking racket "<<side<<"    " <<_v[0]<<endl;
+	//cout<<"Checking racket "<<side<<"    " <<_v[0]<<endl;
 	int rows = roi_frame.rows;
 	int cols = roi_frame.cols;
 
