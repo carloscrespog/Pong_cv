@@ -16,12 +16,12 @@ Ball::Ball(Point center,int radius, Scalar color,int thickness,int shift,Size fr
 	_thickness=thickness;
 	_shift=shift;
 	_frame_size=frame_size;
-	 _points={0,0};
+	_points={0,0};
 	_scored=false;
 	srand(time(0));
-	_v[0]=rand()%(MAX_SPEED-MIN_SPEED)+MIN_SPEED;
-	_v[1]=rand()%(MAX_SPEED-MIN_SPEED)+MIN_SPEED;
-
+	_v[0]=rand()%(MAX_SPEED)-(MAX_SPEED-MIN_SPEED);
+	_v[1]=rand()%(MAX_SPEED)-(MAX_SPEED-MIN_SPEED);
+	check_speed();
 	cout<<"Initial speed: Vx="<< _v[0]<<" Vy="<<_v[1]<<endl;
 
 }
@@ -107,12 +107,42 @@ void Ball::update_position(){
 	y(y()+_v[1]);
 }
 
+void Ball::v(int vx, int vy){
+	_v[0]=vx;
+	_v[1]=vy;
+}
+
+void Ball::center(Point center){
+	_center=center;
+}
+
 bool Ball::scored(){
 	return _scored;
 }
 
 vector<int> Ball::points(){
 	return _points;
+}
+
+void Ball::scored(bool scored){
+	_scored=scored;
+}
+
+void Ball::check_speed(){
+
+	// check that either positive and negative are outside the min speed range: abs(speed)>min_speed
+	if(_v[0]<MIN_SPEED&&_v[0]>=0){
+		_v[0]+=MIN_SPEED;
+	}
+	if(_v[0]>-MIN_SPEED&&_v[0]<=0){
+		_v[0]-=MIN_SPEED;
+	}
+	if(_v[1]<MIN_SPEED&&_v[1]>=0){
+		_v[1]+=MIN_SPEED;
+	}
+	if(_v[1]>-MIN_SPEED&&_v[1]<=0){
+		_v[1]-=MIN_SPEED;
+	}
 }
 
 Ball::~Ball() {

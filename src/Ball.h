@@ -28,9 +28,14 @@ public:
 	void x(int x);
 	int y();
 	void y(int y);
+	void v(int vx, int vy);
+	void center(Point center);
 	int radius();
 	bool scored();
+	void scored(bool scored);
 	vector<int> points();
+
+	void check_speed();
 private:
 	Point _center;
 	int _radius;

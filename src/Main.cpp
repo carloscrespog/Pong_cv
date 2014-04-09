@@ -39,8 +39,8 @@ static void CannyThreshold(int, void*)
 int main(int argc, char* argv[])
 {
 
-	//static int countdown=150;
-	static int countdown=10;	//initial countdown in frames
+	static int countdown=100;	//initial countdown in frames
+	int win_countdown=countdown/2;
 	VideoCapture cap(0); // open default camera
 
 	if (!cap.isOpened())  // if not success, exit program
@@ -84,10 +84,36 @@ int main(int argc, char* argv[])
 			break;
 		}
 		if(myBall.scored()){
+
 			stringstream strm;
 			strm<<myBall.points()[0]<<"-"<<myBall.points()[1];
+
+			myBall.center(Point(videoWidth/2,videoHeight/2));
+			srand(time(0));
+			myBall.v(rand()%(MAX_SPEED)-(MAX_SPEED-MIN_SPEED),rand()%(MAX_SPEED)-(MAX_SPEED-MIN_SPEED));
+			myBall.check_speed();
+			myBall.paint(frame);
 			flip(frame, fram2,1);
 			set_text(fram2,strm.str(),Point(frame.cols/2,frame.rows/2),6,10);
+
+			if(myBall.points()[0]==10||myBall.points()[1]==10)
+			{
+				set_text(fram2,"Game finished",Point(frame.cols/2,frame.rows/2 + 100),2,7);
+				win_countdown++; //never reach 0
+			}
+
+
+			if(win_countdown>=0)
+			{
+				win_countdown--;
+
+			}else
+			{
+				myBall.scored(false);
+				countFrame=countdown/2;
+				win_countdown=countdown/2;
+			}
+
 
 		}else if(countFrame>=countdown)
 		{
