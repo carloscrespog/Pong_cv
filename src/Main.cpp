@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
 			{
 				set_text(fram2,"Game finished",Point(frame.cols/2,frame.rows/2 + 100),2,7);
 				win_countdown++; //never reach 0
-				runtime_keys.u_pressed(true);
+				//runtime_keys.u_pressed(true);
 			}
 
 
