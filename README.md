@@ -7,6 +7,8 @@ Este proyecto nace a partir de una práctica propuesta por bq para conocer las a
 
 En este readme quiero recoger un poco el proceso de realización de la práctica así como para seguirme a mí mismo el progreso que voy siguiendo, y puesto que me encuentro trabajando, para volver a conectar después del trabajo e intentar seguir con el desarrollo de la forma más óptima posible.
 
+Se ha completado la práctica con sus 4 hitos.
+
 ##Instalación y ejecución
 
 + Clonar repo
@@ -86,6 +88,10 @@ Implementados rebotes con manos.
 ####06:41 am
 
 Rebotes con manos funcionando adecuadamente: hito 3 conseguido
+
+###Martes 09 Abril
+
+Práctica completada, hito 4 conseguido
 
 ##Acknowledgments
 

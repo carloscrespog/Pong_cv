@@ -100,6 +100,7 @@ int main(int argc, char* argv[])
 			{
 				set_text(fram2,"Game finished",Point(frame.cols/2,frame.rows/2 + 100),2,7);
 				win_countdown++; //never reach 0
+				runtime_keys.u_pressed(true);
 			}
 
 
@@ -120,13 +121,15 @@ int main(int argc, char* argv[])
 			myBall.update_position();
 			myBall.paint(frame);
 			flip(frame, fram2,1);
+
 			//check if rectangle is outside frame & if ball is in racket's area
 			if(((myBall.x()<=dst.cols/6)||(myBall.x()>=dst.cols*5/6))&&(myBall.x()-myBall.radius()>=0)&&(myBall.x()+myBall.radius()<=dst.cols)
 					&&(myBall.y()-myBall.radius()>=0)&&(myBall.y()+myBall.radius()<=dst.rows))
 			{
 
-				Rect region_of_interest=Rect(myBall.x(),myBall.y(),myBall.radius(),myBall.radius());
+				Rect region_of_interest=Rect(dst.cols-myBall.x(),dst.rows-myBall.y(),myBall.radius(),myBall.radius());
 				Mat image_roi=dst(region_of_interest);
+
 				myBall.check_roi(image_roi,(myBall.x()<=dst.cols/6));
 			}
 

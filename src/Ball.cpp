@@ -36,29 +36,34 @@ void Ball::check_roi (Mat& roi_frame,bool side){
 	int rows = roi_frame.rows;
 	int cols = roi_frame.cols;
 
-
+	bool break_loops=false;
 	for( size_t i = 0; i < rows; i++ ) {
 		for( size_t j = 0; j < cols; j++ ) {
 			// Detect interaction between ball and edge and change speed
 
 			if(roi_frame.at<uchar>(i,j)!=0){
-				//cout<<"Bouncing on racket "<<endl;
+
+				//cout<<"Bouncing on racket "<<_v[0]<<endl;
 				if(side&&_v[0]<0)
 				{
 					_v[0]=-_v[0];
+					break_loops=true;
 				}else if (!side&&_v[0]>0)
 				{
 					_v[0]=-_v[0];
+					break_loops=true;
 				}
 
-				break;
-				if(j!=cols){
-					break;
-				}
+
 			}
 
+			if (break_loops){
+				break;
+			}
 		}
-
+		if (break_loops){
+			break;
+		}
 	}
 
 
@@ -92,13 +97,13 @@ void Ball::update_position(){
 	}else if(x()-_radius<=0)
 	{
 		_scored=true;
-		_points[1]++;
-		cout<<"Player right scores!"<<endl;
+		_points[0]++;
+		cout<<"Player left scores!"<<endl;
 	}else if(x()+_radius>=_frame_size.width)
 	{
 		_scored=true;
-		_points[0]++;
-		cout<<"Player left scores!"<<endl;
+		_points[1]++;
+		cout<<"Player right scores!"<<endl;
 	}
 
 
