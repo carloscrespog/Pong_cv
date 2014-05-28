@@ -48,7 +48,10 @@ int main(int argc, char* argv[])
 		cout << "Cannot open the video cam" << endl;
 		return -1;
 	}
+	cout << "Trying to change height" << cap.set(CV_CAP_PROP_FRAME_HEIGHT, 960)<<endl;
 
+	cout <<"Trying to change width" <<cap.set(CV_CAP_PROP_FRAME_WIDTH, 1280)<<endl;
+	
 	double videoWidth = cap.get(CV_CAP_PROP_FRAME_WIDTH); //get the width of frames of the video
 	double videoHeight = cap.get(CV_CAP_PROP_FRAME_HEIGHT); //get the height of frames of the video
 	//   int fourcc=static_cast<int>(cap.get(CV_CAP_PROP_FOURCC));
